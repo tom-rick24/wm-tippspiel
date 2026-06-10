@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WM Tippspiel EA-515</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════ HEADER ════════════════════════════ -->
+<header>
+  <div class="hdr-inner">
+    <div class="logo">
+      <span class="logo-ball">⚽</span>
+      <div class="logo-text">
+        <div class="t1">WM 2026</div>
+        <div class="t2">Tippspiel EA-515</div>
+      </div>
+    </div>
+    <div class="hdr-controls">
+      <span class="hdr-label">Spieler:</span>
+      <select id="userSelect" class="user-select">
+        <option value="">– Name auswählen –</option>
+      </select>
+      <button id="adminBtn" class="btn btn-ghost btn-sm">⚙ Admin</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════ NAV ═══════════════════════════════ -->
+<nav class="main-nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" data-view="dashboard">🏠 Dashboard</button>
+    <button class="nav-btn" data-view="spiele">📅 Spiele</button>
+    <button class="nav-btn" data-view="rangliste">🏆 Rangliste</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ MAIN ══════════════════════════════ -->
+<main>
+
+  <!-- ── Dashboard ─────────────────────────────────────────── -->
+  <section id="sec-dashboard" class="section active">
+    <div class="dash-grid">
+      <div class="dash-left">
+        <div id="w-open"></div>
+        <div id="w-results"></div>
+      </div>
+      <div class="dash-right">
+        <div id="w-upcoming"></div>
+        <div id="w-board"></div>
+      </div>
+    </div>
+    <div id="w-champion" style="margin-top:16px"></div>
+  </section>
+
+  <!-- ── Spiele ─────────────────────────────────────────────── -->
+  <section id="sec-spiele" class="section">
+    <div class="filter-bar">
+      <div id="round-filters" class="filter-group"></div>
+      <div class="filter-group">
+        <button class="flt-btn active" data-status="all">Alle Status</button>
+        <button class="flt-btn" data-status="open">Offen</button>
+        <button class="flt-btn" data-status="locked">Gesperrt</button>
+        <button class="flt-btn" data-status="finished">Beendet</button>
+      </div>
+    </div>
+    <div id="games-list"></div>
+  </section>
+
+  <!-- ── Rangliste ──────────────────────────────────────────── -->
+  <section id="sec-rangliste" class="section">
+    <div id="leaderboard"></div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════ ADMIN PANEL ═══════════════════════ -->
+<div id="admin-panel" class="admin-panel">
+  <div class="admin-hdr">
+    <h3>⚙ Admin – Ergebnisse &amp; Teams</h3>
+    <button id="adminClose" class="btn btn-ghost btn-sm">✕ Schließen</button>
+  </div>
+  <p class="admin-hint">
+    Ergebnisse für gesperrte Spiele eintragen · Bei K.O.-Spielen Team-Namen anpassen
+  </p>
+  <div style="margin-bottom:12px">
+    <button onclick="adminResetAll()" class="btn btn-danger btn-sm">&#x1F5D1; Alle Tipps &amp; Ergebnisse löschen</button>
+  </div>
+  <div id="admin-list"></div>
+</div>
+
+<!-- Overlay (schließt Admin bei Klick außerhalb) -->
+<div id="overlay"></div>
+
+<!-- Toast Notification -->
+<div id="toast"></div>
+
+<!-- ═══════════════════════ SCRIPTS ═══════════════════════════ -->
+<!-- Firebase SDK (kein Download nötig, läuft über CDN) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
