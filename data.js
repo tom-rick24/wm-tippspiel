@@ -48,8 +48,8 @@ const GAMES = [
   // GRUPPENPHASE – SPIELTAG 1 (11.–17. Juni)
   // ================================================
 
-  // ── TESTSPIEL (heute Abend – zum Ausprobieren) ───────────────
-  { id:  0, group: 'A', round: 'Gruppenphase', home: 'Deutschland',          away: 'Argentinien',         kickoff: '2026-06-10T12:00', venue: 'MetLife Stadium, New York' },
+  // ── TESTSPIEL (Probedurchlauf) ──────────────────────────────
+  { id:  0, group: 'A', round: 'Gruppenphase', home: 'Deutschland',          away: 'Argentinien',         kickoff: '2026-06-10T15:30', venue: 'MetLife Stadium, New York' },
 
   // 11. Juni – Gruppe A
   { id:  1, group: 'A', round: 'Gruppenphase', home: 'Mexico',               away: 'Südafrika',           kickoff: '2026-06-11T21:00', venue: 'Estadio Azteca, Mexico City' },
