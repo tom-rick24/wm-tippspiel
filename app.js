@@ -654,9 +654,8 @@ function renderLeaderboard() {
       <span style="font-size:12px;color:var(--text-muted)">${done} / ${GAMES.length} Spiele ausgewertet</span>
     </div>
     <div class="board-note">
-      Punkte: <b style="color:var(--green)">Exakt = 5 Pkt</b> &nbsp;·&nbsp;
-      <b style="color:#81C4FF">Richtige Tordifferenz = 3 Pkt</b> &nbsp;·&nbsp;
-      <b style="color:#16588E">Richtiger Sieger/Unentschieden = 2 Pkt</b> &nbsp;·&nbsp;
+      Punkte: <b style="color:#81C4FF">Exakt = 5 Pkt</b> &nbsp;·&nbsp;
+      <b style="color:#16588E">Richtige Tordifferenz = 3 Pkt</b> &nbsp;·&nbsp;
       <b style="color:#E7222E">Tendenz richtig = 2 Pkt</b> &nbsp;·&nbsp;
       <b style="color:var(--text-muted)">Falsch = 0 Pkt</b>
     </div>
