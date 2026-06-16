@@ -98,7 +98,7 @@ const DB = {
 };
 
 // ── WELTMEISTER-TIPP KONSTANTEN ───────────────────────────────
-const CHAMP_DEADLINE = new Date('2026-06-14T23:00').getTime();
+const CHAMP_DEADLINE = new Date('2026-06-17T10:00').getTime();
 const ALL_TEAMS = Object.values(GROUPS).flat().sort((a, b) => a.localeCompare(b));
 
 // ── GAME LOGIC ────────────────────────────────────────────────
@@ -628,7 +628,7 @@ window.submitTip = async function(id) {
 
 // Zu Spiel in Games-View springen
 window.jumpToGame = function(id) {
-  showView('spiele');
+  showView('spiele');piel
   S.fRound = 'all'; S.fStatus = 'all';
   updateFilterBtns();
   renderGames();
