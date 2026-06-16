@@ -262,46 +262,12 @@ function renderWidgetOpenTips() {
 
 function renderWidgetRecentResults() {
   const el = document.getElementById('w-results');
-  const finished = GAMES.filter(g => hasResult(g))
-    .sort((a,b) => new Date(b.kickoff) - new Date(a.kickoff))
-    .slice(0, 6);
-
-  el.innerHTML = `<div class="card">
-    <div class="card-hdr"><span class="card-title">🏁 Letzte Ergebnisse</span></div>
-    <div class="card-body">
-      ${finished.length === 0
-        ? '<div class="empty">Noch keine Ergebnisse eingetragen.</div>'
-        : finished.map(g => {
-          const r = S.results[g.id];
-          const myTip = S.user ? getTip(g.id, S.user) : null;
-          const pts   = myTip ? calcScore(myTip, r) : null;
-          const hn = getTeamName(g,'home'), an = getTeamName(g,'away');
-          return `<div class="fix-row">
-            <div class="fix-time">${fmtDate(g.kickoff)}<br><small>${g.group ? 'Gr. '+g.group : g.round}</small></div>
-            <div class="fix-teams">
-              ${flagOf(hn)}${hn} <strong>${r.home}:${r.away}</strong> ${an}${flagOf(an)}
-            </div>
-            <div class="fix-right">
-              ${pts !== null ? `<span class="pts-badge ${pts===5?'pts-exact':pts===3?'pts-diff':pts===2?'pts-tend':'pts-wrong'}">+${pts}P</span>` : ''}
-              ${myTip ? `<small style="color:var(--text-muted)">(${myTip.home}:${myTip.away})</small>` : ''}
-            </div>
-          </div>`;
-        }).join('')}
-    </div></div>`;
-}
-
-function renderWidgetUpcoming() {
-  const el = document.getElementById('w-upcoming');
   const now = Date.now();
-  const upcoming = GAMES.filter(g => new Date(g.kickoff).getTime() > now).slice(0, 6);
-  const isToday = upcoming.filter(g => {
-    const d = new Date(g.kickoff); const n = new Date();
-    return d.getDate()===n.getDate() && d.getMonth()===n.getMonth();
-  }).length > 0;
+  const upcoming = GAMES.filter(g => new Date(g.kickoff).getTime() > now).slice(0, 8);
 
   el.innerHTML = `<div class="card">
     <div class="card-hdr">
-      <span class="card-title">${isToday ? '📅 Heutige Spiele' : '📅 Nächste Spiele'}</span>
+      <span class="card-title">📅 Nächste Spiele</span>
       <span style="font-size:12px;color:var(--text-muted)">${upcoming.length} Spiele</span>
     </div>
     <div class="card-body">
@@ -313,13 +279,46 @@ function renderWidgetUpcoming() {
           return `<div class="fix-row">
             <div class="fix-time"><strong>${fmtTime(g.kickoff)}</strong><br>${fmtDate(g.kickoff)}</div>
             <div class="fix-teams">
-              ${flagOf(hn)}${hn} vs ${an}${flagOf(an)}
+              ${hn} vs ${an}
               <small>${g.group ? 'Gruppe '+g.group : g.round}</small>
             </div>
             <div class="fix-right">
               ${hasTip
                 ? `<span class="badge badge-open" title="Tipp: ${getTip(g.id,S.user).home}:${getTip(g.id,S.user).away}">✓</span>`
                 : S.user ? `<span class="badge badge-locked">!</span>` : ''}
+            </div>
+          </div>`;
+        }).join('')}
+    </div></div>`;
+}
+
+function renderWidgetUpcoming() {
+  const el = document.getElementById('w-upcoming');
+  const finished = GAMES.filter(g => hasResult(g))
+    .sort((a,b) => new Date(b.kickoff) - new Date(a.kickoff))
+    .slice(0, 8);
+
+  el.innerHTML = `<div class="card">
+    <div class="card-hdr">
+      <span class="card-title">🏁 Letzte Ergebnisse</span>
+      <span style="font-size:12px;color:var(--text-muted)">${finished.length} Spiele</span>
+    </div>
+    <div class="card-body">
+      ${finished.length === 0
+        ? '<div class="empty">Noch keine Ergebnisse eingetragen.</div>'
+        : finished.map(g => {
+          const r = S.results[g.id];
+          const myTip = S.user ? getTip(g.id, S.user) : null;
+          const pts   = myTip ? calcScore(myTip, r) : null;
+          const hn = getTeamName(g,'home'), an = getTeamName(g,'away');
+          return `<div class="fix-row">
+            <div class="fix-time">${fmtDate(g.kickoff)}<br><small>${g.group ? 'Gr. '+g.group : g.round}</small></div>
+            <div class="fix-teams">
+              ${hn} <strong>${r.home}:${r.away}</strong> ${an}
+            </div>
+            <div class="fix-right">
+              ${pts !== null ? `<span class="pts-badge ${pts===5?'pts-exact':pts===3?'pts-diff':pts===2?'pts-tend':'pts-wrong'}">+${pts}</span>` : ''}
+              ${myTip ? `<small style="color:var(--text-muted)">(${myTip.home}:${myTip.away})</small>` : ''}
             </div>
           </div>`;
         }).join('')}
@@ -353,7 +352,7 @@ function renderWidgetChampion() {
   const myTip   = S.user ? (S.champTips[S.user] || null) : null;
   const result  = S.champResult;
   const dDate   = new Date(CHAMP_DEADLINE);
-  const deadline = `So. ${String(dDate.getDate()).padStart(2,'0')}.${String(dDate.getMonth()+1).padStart(2,'0')}. 23:00 Uhr`;
+  const deadline = `Mi. ${String(dDate.getDate()).padStart(2,'0')}.${String(dDate.getMonth()+1).padStart(2,'0')}. 10:00 Uhr`;
   const opts  = () => ALL_TEAMS.map(n => `<option value="${esc(n)}"${myTip?.champion===n?' selected':''}>${esc(n)}</option>`).join('');
   const opts2 = () => ALL_TEAMS.map(n => `<option value="${esc(n)}"${myTip?.vice===n?' selected':''}>${esc(n)}</option>`).join('');
 
