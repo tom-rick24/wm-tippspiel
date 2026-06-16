@@ -249,7 +249,7 @@ function renderWidgetOpenTips() {
         : openGames.map(g => {
           const urgent = new Date(g.kickoff).getTime() - now < 86400e3;
           const hn = getTeamName(g,'home'), an = getTeamName(g,'away');
-          return `<div class="otip-row" style="${urgent ? 'border-color:var(--orange)' : ''}">
+          return `<div class="otip-row">`
             <div class="otip-info">
               <div class="otip-game">${flagOf(hn)}${hn} – ${an}${flagOf(an)}</div>
               <div class="otip-meta">${fmtFull(g.kickoff)} · ${g.venue.split(',').pop().trim()}</div>
