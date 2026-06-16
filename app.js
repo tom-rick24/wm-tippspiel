@@ -677,7 +677,7 @@ function renderLeaderboard() {
             const isMe = p.name === S.user;
             const tippedCount = GAMES.filter(g => getTip(g.id, p.name) !== null).length;
             const quote = p.games > 0 ? Math.round((p.points - p.champPts) / (p.games * 5) * 100) : 0;
-            const champVisible = Date.now() >= new Date('2026-06-15T00:00').getTime();
+            const champVisible = Date.now() >= new Date('2026-06-17T10:00').getTime();
             const champTip = S.champTips[p.name];
             const champCell = !champVisible
               ? '<span style="color:var(--text-subtle);font-size:11px">ab Mo.</span>'
