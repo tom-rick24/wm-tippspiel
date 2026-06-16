@@ -680,7 +680,7 @@ function renderLeaderboard() {
             const champVisible = Date.now() >= new Date('2026-06-17T10:00').getTime();
             const champTip = S.champTips[p.name];
             const champCell = !champVisible
-              ? '<span style="color:var(--text-subtle);font-size:11px">ab Mo.</span>'
+              ? '<span style="color:var(--text-subtle);font-size:11px">ab Mi. 10:00</span>'
               : S.champResult
                 ? `<span class="pts-badge ${p.champPts>0?'pts-exact':'pts-wrong'}">+${p.champPts}</span>`
                 : champTip ? `<span style="font-size:11px;color:var(--text-muted)">${esc(champTip.champion)}</span>` : '<span style="color:var(--text-subtle)">–</span>';
